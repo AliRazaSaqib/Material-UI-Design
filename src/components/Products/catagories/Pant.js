@@ -1,0 +1,72 @@
+/** @format */
+
+import React from "react";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import { Grid } from "@material-ui/core";
+import { v4 as uuidv4 } from "uuid";
+
+const Pant = () => {
+  const list = [
+    { id: uuidv4(), name: "Pant", image: "/pant.jpg", price: 350 },
+    { id: uuidv4(), name: "Pant", image: "/pant-1.jpg", price: 830 },
+    { id: uuidv4(), name: "Pant", image: "/pant-2.jpg", price: 730 },
+    { id: uuidv4(), name: "Pant", image: "/pant-3.jpg", price: 1200 },
+  ];
+  // get the product id
+  const moreDetails = (id) => {
+    console.log("id:", id);
+  };
+  return (
+    <div className="body-main_container">
+      <Grid container spacing={12}>
+        {list.map((el) => (
+          <Grid>
+            <Card key={el.id} style={{ width: "250px" }} className="card">
+              <CardActionArea>
+                <CardMedia title="Shirt">
+                  <img alt="Shirt" src={el.image} height={250} width={250} />
+                </CardMedia>
+                <CardContent className="cardcontent">
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {el.name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    {el.price}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  Add to list
+                </Button>
+                <Button
+                  size="small"
+                  color="primary"
+                  onClick={() => moreDetails(el.id)}
+                >
+                  More details
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </div>
+  );
+};
+
+export default Pant;

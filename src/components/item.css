@@ -1,0 +1,115 @@
+/** @format */
+
+.MuiGrid-container {
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.body-main_container {
+  height: 100vh;
+}
+
+.cardcontent {
+  display: flex;
+  justify-content: space-between;
+}
+
+.MuiCardActions-root {
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.MuiToolbar-regular,
+.makeStyles-toolbar-5 {
+  min-height: 54px !important;
+}
+.MuiToolbar-regular {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logout {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+.logout:hover {
+  border-bottom: 1px solid white;
+}
+
+.MuiContainer-maxWidthMd {
+  width: calc(100% - 240px) !important;
+  margin-left: 240px !important;
+}
+
+.footer {
+  padding-left: 0 !important;
+}
+
+.nav-cart {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-cart span {
+  padding-top: 5px;
+}
+
+.nav-cart span:hover {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.quantity {
+  gap: unset;
+}
+.MuiFilledInput-root {
+  height: 44px;
+}
+
+.MuiInputLabel-filled.MuiInputLabel-shrink {
+  transform: translate(12px, 4px) scale(0.75) !important;
+}
+
+.MuiTypography-gutterBottom {
+  margin-bottom: 0.24em !important;
+}
+.MuiOutlinedInput-root {
+  width: 90px;
+}
+
+.clearIcon {
+  cursor: pointer;
+}
+.clearIcon:hover {
+  transform: scale(1.1);
+}
+
+.cart-counter {
+  border-radius: 50%;
+  background: black;
+  padding: 6px;
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px !important;
+  position: absolute;
+  margin-top: -24px !important;
+  margin-left: 10px !important;
+  z-index: 1;
+}
+@media (max-width: 600px) {
+  .MuiContainer-maxWidthMd {
+    margin-left: 0 !important;
+    width: unset !important;
+  }
+}

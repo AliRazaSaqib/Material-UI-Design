@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+/** @format */
+import SideMenu from "./components/menu/SideMenu";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import Shirt from "./components/Products/catagories/Shirt";
+import Loader from "./components/spinner/Loader";
+import Footer from "./components/menu/Footer";
 
 function App() {
+  const [spin, setSpin] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setSpin(false);
+    }, 3000);
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {spin ? (
+        <Loader />
+      ) : (
+        <Router>
+          <Routes>
+            <Route path="/" exact element={<SideMenu />} />
+          </Routes>
+          <Footer />
+        </Router>
+      )}
     </div>
   );
 }
