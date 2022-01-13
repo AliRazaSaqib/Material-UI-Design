@@ -6,8 +6,11 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import { Typography, Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { savePaymentInfo } from "../../redux/slices/Payment";
 
 export default function PaymentForm() {
+  const dispatch = useDispatch();
   const initialValues = {
     name: "",
     cardNumber: "",
@@ -23,6 +26,14 @@ export default function PaymentForm() {
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
+      dispatch(
+        savePaymentInfo({
+          name: values.name,
+          cardNumber: values.cardNumber,
+          expiryDate: values.expiryDate,
+          cvc: values.cvc,
+        })
+      );
     } catch (error) {
       console.log(error);
     }

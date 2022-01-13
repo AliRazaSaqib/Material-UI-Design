@@ -162,6 +162,20 @@
 .MuiFormHelperText-root {
   display: none;
 }
+.grid-container {
+  gap: 50px;
+}
+.checkout {
+  text-decoration: none;
+  color: white;
+}
+.paymentDetails {
+  align-items: unset !important;
+}
+.payment-info {
+  justify-content: unset;
+}
+
 @media (max-width: 600px) {
   .MuiContainer-maxWidthMd {
     margin-left: 0 !important;

@@ -43,7 +43,7 @@ const Trowser = () => {
   };
   return (
     <div className="body-main_container">
-      <Grid container spacing={12}>
+      <Grid container spacing={12} className="grid-container">
         {list.map((el) => (
           <Grid>
             <Card key={el.id} style={{ width: "250px" }} className="card">

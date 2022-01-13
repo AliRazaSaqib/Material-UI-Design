@@ -2,26 +2,40 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 
-// ----------------------------------------------------------------------
-
 const initialState = {
-  myProfile: {
+  address: {
+    firstName: "",
+    lastName: "",
+    address1: "",
+    address2: "",
+    city: "",
+    state: "",
+    zip: "",
+    country: "",
+  },
+
+  payment: {
     name: "",
-    email: "",
-    password: "",
+    cardNumber: "",
+    expiryDate: "",
+    cvc: "",
   },
 };
 
 const slice = createSlice({
-  name: "Auth",
+  name: "Payment",
   initialState,
   reducers: {
     loadInitialState(state) {
       state = initialState;
     },
 
-    saveProfile(state, action) {
-      state.myProfile = action.payload;
+    saveAddress(state, action) {
+      state.address = action.payload;
+    },
+
+    savePaymentInfo(state, action) {
+      state.payment = action.payload;
     },
   },
 });
@@ -29,12 +43,22 @@ const slice = createSlice({
 // Reducer
 export default slice.reducer;
 
-// ----------------------------------------------------------------------
+// ----------------------- Actions -----------------------------
 
-export function saveUser(data) {
+export function saveAddress(data) {
   return async (dispatch) => {
     try {
-      dispatch(slice.actions.saveProfile(data));
+      dispatch(slice.actions.saveAddress(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function savePaymentInfo(data) {
+  return async (dispatch) => {
+    try {
+      dispatch(slice.actions.savePaymentInfo(data));
     } catch (error) {
       console.log(error);
     }

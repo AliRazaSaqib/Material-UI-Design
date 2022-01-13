@@ -12,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import ClearIcon from "@material-ui/icons/Clear";
 import { deleteItems } from "../../redux/slices/AddToCart";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -153,7 +154,9 @@ const ViewCart = () => {
           color="primary"
           style={{ marginTop: "12px" }}
         >
-          Checkout
+          <Link to="/checkout" className="checkout">
+            Checkout
+          </Link>
         </Button>
       </Paper>
     </div>

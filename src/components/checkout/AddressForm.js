@@ -7,8 +7,11 @@ import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { TextField } from "formik-material-ui";
 import { Typography, Button } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { saveAddress } from "../../redux/slices/Payment";
 
 export default function AddressForm() {
+  const dispatch = useDispatch();
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -32,6 +35,18 @@ export default function AddressForm() {
 
   const onSubmit = async (values, { setSubmitting }) => {
     try {
+      dispatch(
+        saveAddress({
+          firstName: values.firstName,
+          lastName: values.lastName,
+          address1: values.address1,
+          address2: values.address2,
+          city: values.city,
+          state: values.state,
+          zip: values.zip,
+          country: values.country,
+        })
+      );
     } catch (error) {
       console.log(error);
     }
