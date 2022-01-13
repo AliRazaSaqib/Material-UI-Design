@@ -121,7 +121,9 @@ export default function Checkout() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap className="typo">
-            E-Commerce Store
+            <Link to="/products" className=" E-Commerce ">
+              E-Commerce Store
+            </Link>
           </Typography>
           <div className="nav-cart">
             <Typography className="cart-counter">{counter}</Typography>

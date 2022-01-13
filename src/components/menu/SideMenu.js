@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
@@ -160,7 +159,9 @@ const SideMenu = (props) => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap>
-              E-Commerce Store
+              <Link to="/products" className=" E-Commerce ">
+                E-Commerce Store
+              </Link>
             </Typography>
             <div className="nav-cart">
               <Typography className="cart-counter">{counter}</Typography>

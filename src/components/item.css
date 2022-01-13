@@ -165,7 +165,8 @@
 .grid-container {
   gap: 50px;
 }
-.checkout {
+.checkout,
+.E-Commerce {
   text-decoration: none;
   color: white;
 }
