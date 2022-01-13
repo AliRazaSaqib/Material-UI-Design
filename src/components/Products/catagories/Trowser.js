@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import { useState } from "react";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -10,8 +10,12 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { addItems } from "../../../redux/slices/AddToCart";
 
 const Trowser = () => {
+  const dispatch = useDispatch();
+  const [product, setProduct] = useState([]);
   const list = [
     {
       id: uuidv4(),
@@ -29,6 +33,13 @@ const Trowser = () => {
   // get the product id
   const moreDetails = (id) => {
     console.log("id:", id);
+  };
+
+  // get the product id to store in redux store
+  const handleAdd = (el) => {
+    const data = list.filter((it) => it.id === el.id);
+    dispatch(addItems({ data: [...product, el] }));
+    setProduct([...product, el]);
   };
   return (
     <div className="body-main_container">
@@ -58,7 +69,11 @@ const Trowser = () => {
                 </CardContent>
               </CardActionArea>
               <CardActions>
-                <Button size="small" color="primary">
+                <Button
+                  size="small"
+                  color="primary"
+                  onClick={() => handleAdd(el)}
+                >
                   Add to list
                 </Button>
                 <Button

@@ -11,10 +11,9 @@ import Typography from "@material-ui/core/Typography";
 import { Grid } from "@material-ui/core";
 import { v4 as uuidv4 } from "uuid";
 import "../../components/item.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItems } from "../../redux/slices/AddToCart";
 const ProductList = () => {
-  const getCartItems = useSelector((state) => state.cartItems);
   const dispatch = useDispatch();
   const [product, setProduct] = useState([]);
   const list = [

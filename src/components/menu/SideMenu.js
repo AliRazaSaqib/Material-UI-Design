@@ -25,6 +25,7 @@ import Loader from "../spinner/Loader";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ViewCart from "../Products/ViewCart";
 import { useSelector } from "react-redux";
+import Footer from "../../components/menu/Footer";
 
 const drawerWidth = 240;
 
@@ -119,7 +120,7 @@ const SideMenu = (props) => {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <Divider />
+
       <List>
         <ListItem button>
           <ListItemText onClick={allProducts}>All</ListItemText>
@@ -144,80 +145,83 @@ const SideMenu = (props) => {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            E-Commerce Store
-          </Typography>
-          <div className="nav-cart">
-            <Typography className="cart-counter">{counter}</Typography>
-            <span>
-              <ShoppingCartIcon onClick={showCart} />
-            </span>
-            <Link to="/" className="logout">
-              Logout
-            </Link>
-          </div>
-        </Toolbar>
-      </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true,
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
+    <>
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="fixed" className={classes.appBar}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography variant="h6" noWrap>
+              E-Commerce Store
+            </Typography>
+            <div className="nav-cart">
+              <Typography className="cart-counter">{counter}</Typography>
+              <span>
+                <ShoppingCartIcon onClick={showCart} />
+              </span>
+              <Link to="/" className="logout">
+                Logout
+              </Link>
+            </div>
+          </Toolbar>
+        </AppBar>
+        <nav className={classes.drawer} aria-label="mailbox folders">
+          <Hidden smUp implementation="css">
+            <Drawer
+              container={container}
+              variant="temporary"
+              anchor={theme.direction === "rtl" ? "right" : "left"}
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              ModalProps={{
+                keepMounted: true,
+              }}
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+          <Hidden xsDown implementation="css">
+            <Drawer
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+              variant="permanent"
+              open
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+        </nav>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
 
-        {spin ? (
-          <Loader />
-        ) : (
-          <div>
-            {active === "component1" && <ProductList title="allproducts" />}
-            {active === "component2" && <Shirt title="shirts" />}
-            {active === "component3" && <Pant title="pants" />}
-            {active === "component4" && <Trowser title="trowsers" />}
-            {active === "component5" && <Jackets title="jackets" />}
-            {active === "cartComponent" && <ViewCart title="cart" />}
-          </div>
-        )}
-      </main>
-    </div>
+          {spin ? (
+            <Loader />
+          ) : (
+            <div>
+              {active === "component1" && <ProductList title="allproducts" />}
+              {active === "component2" && <Shirt title="shirts" />}
+              {active === "component3" && <Pant title="pants" />}
+              {active === "component4" && <Trowser title="trowsers" />}
+              {active === "component5" && <Jackets title="jackets" />}
+              {active === "cartComponent" && <ViewCart title="cart" />}
+            </div>
+          )}
+        </main>
+      </div>
+      <Footer />
+    </>
   );
 };
 
