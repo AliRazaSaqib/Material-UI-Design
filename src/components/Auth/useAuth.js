@@ -8,9 +8,8 @@ export default function useAuth(initialValue) {
     setTimeout(() => {
       setIsAuth(true);
     }, 1000);
-    console.log("loged In");
-    console.log(isAuth);
   }
+
   // function logout() {
   //   setTimeout(() => {
   //     setIsAuth(false);

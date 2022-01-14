@@ -9,20 +9,26 @@ import "../../components/item.css";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import useAuth from "./useAuth";
+import CryptoJS from "crypto-js";
 
 export default function Login() {
-  const [isAuth, login] = useAuth(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  console.log("loading", loading);
   const { email, password } = useSelector((state) => state.auth.myProfile);
+
+  // for token
   const token = "7jsgdsyywdkas7kagd8skd8ss799";
+  var incryptedToken = CryptoJS.AES.encrypt(
+    JSON.stringify(token),
+    ""
+  ).toString();
+  var decrypt = CryptoJS.AES.decrypt(incryptedToken, "");
+  var decryptedToken = JSON.parse(decrypt.toString(CryptoJS.enc.Utf8));
+
   const initialValues = {
     email: "",
     password: "",
   };
-
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email required!"),
     password: Yup.string().required("Password Required!"),
@@ -31,15 +37,16 @@ export default function Login() {
   const onSubmit = async (values, { setSubmitting }) => {
     try {
       if (values.email === email && values.password === password) {
-        localStorage.setItem("Token", token);
+        localStorage.setItem("Token", incryptedToken);
         setLoading(true);
         setTimeout(() => {
-          login();
           navigate("/products");
         }, 2000);
-      } else console.log("error");
+      } else {
+        console.log("Error: Wrong Information");
+      }
     } catch (error) {
-      console.log(error);
+      console.log("Error: Wrong Information");
     }
   };
 

@@ -10,7 +10,7 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
@@ -19,8 +19,9 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Review from "./Review";
 import Footer1 from "./Footer1";
 import "../../components/item.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import { resetItemsStore } from "../../redux/slices/AddToCart";
 
 function Copyright() {
   return <Footer1 className="footer-style" />;
@@ -87,12 +88,18 @@ function getStepContent(step) {
 
 export default function Checkout() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [activeStep, setActiveStep] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
   const itemsCount = useSelector((state) => state.cartItems);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+
+    if (activeStep === steps.length - 1) {
+      dispatch(resetItemsStore());
+    }
   };
 
   const handleBack = () => {
@@ -101,6 +108,10 @@ export default function Checkout() {
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleResetCart = () => {
+    navigate("/products");
   };
 
   // count total no of items in redux
@@ -159,6 +170,14 @@ export default function Checkout() {
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>
+                <Button
+                  style={{ marginTop: "16px" }}
+                  variant="contained"
+                  color="primary"
+                  onClick={handleResetCart}
+                >
+                  Back to HomePage
+                </Button>
               </>
             ) : (
               <>

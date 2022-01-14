@@ -18,6 +18,10 @@ const slice = createSlice({
     addItems(state, action) {
       state.newCart = action.payload.data;
     },
+
+    resetItemsStore(state, action) {
+      state.newCart = [];
+    },
   },
 });
 
@@ -40,6 +44,16 @@ export function deleteItems(data) {
   return async (dispatch) => {
     try {
       dispatch(slice.actions.addItems(data));
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+}
+
+export function resetItemsStore() {
+  return async (dispatch) => {
+    try {
+      dispatch(slice.actions.resetItemsStore());
     } catch (error) {
       console.log("error", error);
     }

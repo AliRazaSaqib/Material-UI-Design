@@ -10,6 +10,7 @@ const initialState = {
     email: "",
     password: "",
   },
+  isAuthenticated: false,
 };
 
 const slice = createSlice({
@@ -22,6 +23,7 @@ const slice = createSlice({
 
     saveProfile(state, action) {
       state.myProfile = action.payload;
+      state.isAuthenticated = true;
     },
   },
 });
@@ -40,26 +42,3 @@ export function saveUser(data) {
     }
   };
 }
-
-// ----------------------------------------------------------------------
-
-// export function createNewProfile(data) {
-//   return async (dispatch) => {
-//     dispatch(slice.actions.startLoading());
-//     try {
-//       const accessToken = window.localStorage.getItem('accessToken');
-
-//       const config = {
-//         headers: {
-//           'Content-Type': 'application/json',
-//           'x-auth-token': accessToken
-//         }
-//       };
-
-//       const response = await axios.post('/api/profile', data, config);
-//       dispatch(slice.actions.saveProfile(response.data));
-//     } catch (error) {
-//       dispatch(slice.actions.hasError(error));
-//     }
-//   };
-// }

@@ -5,18 +5,20 @@ import { useEffect, useState } from "react";
 import Loader from "./components/spinner/Loader";
 import SignUp from "./components/Auth/SignUp";
 import Login from "./components/Auth/Login";
-import useAuth from "./components/Auth/useAuth";
 import NotFound from "./components/404/NotFound";
 import Checkout from "./components/checkout/Checkout";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [isAuth, login] = useAuth(false);
   const [spin, setSpin] = useState(true);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   useEffect(() => {
     setTimeout(() => {
       setSpin(false);
     }, 3000);
   }, []);
+
   return (
     <div className="App">
       {spin ? (
@@ -26,11 +28,16 @@ function App() {
           <Routes>
             <Route path="/" exact element={<Login />} />
             <Route path="/signup" exact element={<SignUp />} />
-            <Route path="/checkout" exact element={<Checkout />} />
-            {login ? (
-              <Route path="/products" exact element={<SideMenu />} />
+
+            {isAuthenticated ? (
+              <>
+                <Route path="/products" exact element={<SideMenu />} />
+                <Route path="/checkout" exact element={<Checkout />} />
+              </>
             ) : (
-              <Login />
+              <>
+                <Route path="/" exact element={<Login />} />
+              </>
             )}
 
             <Route path="/:pageName" element={<NotFound />} />
