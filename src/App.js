@@ -8,6 +8,7 @@ import Login from "./components/Auth/Login";
 import NotFound from "./components/404/NotFound";
 import Checkout from "./components/checkout/Checkout";
 import { useSelector } from "react-redux";
+import IsAuth from "./components/Auth/IsAuth";
 
 function App() {
   const [spin, setSpin] = useState(true);
@@ -33,14 +34,20 @@ function App() {
               <>
                 <Route path="/products" exact element={<SideMenu />} />
                 <Route path="/checkout" exact element={<Checkout />} />
+                {/* <Route
+                  path="/:pageName"
+                  element={<NotFound notFound={isAuthenticated} />}
+                /> */}
               </>
             ) : (
               <>
-                <Route path="/" exact element={<Login />} />
+                <Route
+                  path="/:pageName"
+                  exact
+                  element={<IsAuth authorized={isAuthenticated} />}
+                />
               </>
             )}
-
-            <Route path="/:pageName" element={<NotFound />} />
           </Routes>
         </Router>
       )}

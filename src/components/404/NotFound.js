@@ -1,10 +1,19 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect } from "react";
 import ErrorOutlineIcon from "@material-ui/icons/ErrorOutline";
 import { Typography } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
 
-const NotFound = () => {
+const NotFound = ({ notFound }) => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!notFound) {
+      navigate("/:pageName");
+    } else {
+      navigate("/");
+    }
+  });
   return (
     <div
       style={{
